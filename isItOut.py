@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import urllib2, re, time, sys
 import sendEmail
 

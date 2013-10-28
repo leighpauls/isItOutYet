@@ -1,0 +1,16 @@
+
+This is a basic script that will look for a keyphrase in a web page, and send an email if it exists.
+It's currently hardcoded to look for the nexus 5 from google play, but it shouldn't be too much work to make it work for something else.
+
+** Instructions
+
+Run a single check by running isItOut.py with the path to your credentials file
+#+BEGIN_SRC
+python isItOut.py credentials.txt
+#+END_SRC
+credentials.txt should contains 2 lines: the sending email's username and password. I'm assuming that this account is a throwaway @gmail.com address.
+
+Suggested crontab entry to check every 5 minutes:
+#+BEGIN_SRC
+*/5 * * * * python ~/isItOutYet/isItOut.py ~/isItOutYet/credentials.txt
+#+END_SRC
