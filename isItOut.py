@@ -12,14 +12,12 @@ def main():
         msg = 'Found "' + EVENT_STRING + \
             '" in "' + EVENT_URL + '" at ' + \
             time.asctime(time.gmtime()) + ' UTC'
-        print "message: ", msg
+        # print "message: ", msg
         sendEmail.sendEmail(
             'leigh.pauls@gmail.com',
             'Nexus 5 is OUT!!!',
             msg,
             sys.argv[1])
-    else:
-        print 'no match :('
 
 if __name__=='__main__':
     main()
