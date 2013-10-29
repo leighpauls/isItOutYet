@@ -1,23 +1,31 @@
 import urllib2, re, time, sys
 import sendEmail
 
-EVENT_STRING = 'nexus 5'
+NEW_HOTNESS = 'Nexus 5'
+OLD_BUSTED = 'nexus 4'
 EVENT_URL = 'https://play.google.com/store/devices'
 
 def main():
-    p = re.compile(EVENT_STRING, re.IGNORECASE)
+    newHotnessRegex = re.compile(NEW_HOTNESS, re.IGNORECASE)
+    oldBustedRegex = re.compile(OLD_BUSTED, re.IGNORECASE)
     pageContents = urllib2.urlopen(EVENT_URL).read()
 
-    if p.search(pageContents):
-        msg = 'Found "' + EVENT_STRING + \
-            '" in "' + EVENT_URL + '" at ' + \
+    newHotnessFound = newHotnessRegex.search(pageContents)
+    oldBustedGone = not oldBustedRegex.search(pageContents)
+
+    if newHotnessFound or oldBustedGone:
+        condition = 'Found "' + NEW_HOTNESS + '"'
+        if oldBustedGone:
+            condition = '"' + OLD_BUSTED + '" was not found'
+
+        msg = condition + ' at ' + EVENT_URL + ' at ' + \
             time.asctime(time.gmtime()) + ' UTC'
         # print "message: ", msg
         sendEmail.sendEmail(
-            'leigh.pauls@gmail.com',
-            'Nexus 5 is OUT!!!',
-            msg,
-            sys.argv[1])
+            sys.argv[1],
+            sys.argv[2],
+            NEW_HOTNESS + ' is OUT!!!',
+            msg)
 
 if __name__=='__main__':
     main()
