@@ -6,11 +6,11 @@ It's currently hardcoded to look for the nexus 5 from google play, but it should
 
 Run a single check by running isItOut.py with the path to your credentials file
 #+BEGIN_SRC
-python isItOut.py credentials.txt
+python isItOut.py credentials.txt recipients.txt
 #+END_SRC
 credentials.txt should contains 2 lines: the sending email's username and password. I'm assuming that this account is a throwaway @gmail.com address.
 
 Suggested crontab entry to check every 5 minutes:
 #+BEGIN_SRC
-*/5 * * * * python ~/isItOutYet/isItOut.py ~/isItOutYet/credentials.txt
+*/5 * * * * python ~/isItOutYet/isItOut.py ~/isItOutYet/credentials.txt ~/isItOutYet/recipients.txt
 #+END_SRC
